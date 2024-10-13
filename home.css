@@ -1,0 +1,55 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-image: url("../bg1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+p {
+  font-family: "KaiTi";
+  font-size: 30px;
+}
+
+#home {
+  height: 100%;
+  overflow: hidden;
+}
+
+nav {
+  /* float: right; */
+
+  margin-top: 2%;
+  margin-bottom: 0px;
+  margin-inline: 30%;
+  background-color: rgb(102, 33, 33);
+}
+nav ul {
+  display: flex;
+  /* margin-left: 50%; */
+  justify-content: space-around;
+  list-style: none;
+  padding: 0;
+  margin: 0%;
+}
+
+li a {
+  font-family: "KaiTi";
+  font-size: 35px;
+  color: rgb(35, 0, 0);
+  text-decoration: none;
+}
+
+.content {
+  height: 400px;
+  padding: 0%;
+  width: 500px;
+  /* background-color: green; */
+  text-align: center;
+  margin-left: 35%;
+}
+
+.content p {
+  color: white;
+}

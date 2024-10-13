@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>内容</title>
+    <link rel="stylesheet" href="myCSS/content.css" />
+  </head>
+  <body>
+    <button onclick="changeBg()">切换背景颜色</button>
+    <div class="box1">
+      <div class="images">
+        <img src="new1.jpg" alt="" />
+        <img src="new2.jpg" alt="" />
+        <img src="new3.jpg" alt="" />
+        <img src="new4.jpg" alt="" />
+      </div>
+      <div id="selector">
+        <span id=""></span>
+        <span id=""></span>
+        <span id=""></span>
+        <span id=""></span>
+      </div>
+      <button id="left">&lt;</button>
+      <button id="right">&gt;</button>
+    </div>
+    <script>
+      let isOriginalColor = true;
+
+      function changeBg() {
+        const body = document.body;
+        if (isOriginalColor) {
+          body.style.backgroundColor = "white";
+        } else {
+          body.style.backgroundColor = "gray";
+        }
+        isOriginalColor = !isOriginalColor;
+      }
+      let imgs = document.querySelectorAll(".images img");
+      let span = document.querySelectorAll("span");
+      let left = document.getElementById("left");
+      let right = document.getElementById("right");
+      let index = 0;
+      let timer;
+      function show() {
+        imgs.forEach((img, i) => {
+          img.style.opacity = i === index ? "1" : "0";
+        });
+      }
+
+      function autoPlay() {
+        timer = setInterval(function () {
+          show();
+          index = (index + 1) % imgs.length;
+        }, 1000);
+      }
+      autoPlay();
+
+      function ctrlPlay() {
+        for (let i = 0; i < span.length; i++) {
+          span[i].onclick = function () {
+            index = i;
+            show();
+          };
+        }
+      }
+      ctrlPlay();
+      function clickPlay() {
+        left.onclick = function () {
+          if (index <= 0) {
+            index = span.length - 1;
+          } else {
+            index--;
+          }
+          show();
+        };
+        right.onclick = function () {
+          index = (index + 1) % imgs.length;
+          show();
+        };
+      }
+      clickPlay();
+      function eventList() {
+        for (let i = 0; i < span.length; i++) {
+          span[i].addEventListener(
+            "mouseenter",
+            function () {
+              clearInterval(timer);
+              index = i;
+              show();
+            },
+            false
+          );
+          span[i].addEventListener(
+            "mousemove",
+            function () {
+              clearInterval(timer);
+              autoPlay();
+            },
+            false
+          );
+        }
+      }
+      eventList();
+    </script>
+  </body>
+</html>
